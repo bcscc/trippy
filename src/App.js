@@ -5,6 +5,10 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import LogIn from './components/LogIn';
 
+import "./App.css";
+import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
+import LogIn from "./components/LogIn";
 
 function App() {
   return (
