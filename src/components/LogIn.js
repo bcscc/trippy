@@ -51,28 +51,30 @@ export default function LogIn() {
   const isLoggedIn = localStorage.getItem("token");
 
   return (
-    <div>
-      <h1>{isLoggedIn ? "Welcome" : "Login"}</h1>
-      {!isLoggedIn && (
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => handleInputChange(e, setUsername)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => handleInputChange(e, setPassword)}
-          />
-          <button onClick={handleRegister}>Register</button>
-          <button onClick={handleLogin}>Login</button>
-        </div>
-      )}
-      {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
-      <p>{message}</p>
-    </div>
+    <main>
+      <div className="container">
+        <h1>{isLoggedIn ? "Welcome" : "Login"}</h1>
+        {!isLoggedIn && (
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => handleInputChange(e, setUsername)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => handleInputChange(e, setPassword)}
+            />
+            <button onClick={handleRegister}>Register</button>
+            <button onClick={handleLogin}>Login</button>
+          </div>
+        )}
+        {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
+        <p>{message}</p>
+      </div>
+    </main>
   );
 }

@@ -25,7 +25,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div>
+    <main>
       <section
         className="py-5 text-center"
         style={{
@@ -61,6 +61,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

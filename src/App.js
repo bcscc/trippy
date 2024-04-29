@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import LogIn from "./components/LogIn";
+import "./App.css";
 
 function App() {
   return (
     <Router>
-      <div className="App">
       <header data-bs-theme="dark">
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
           <div className="container-fluid">
@@ -21,10 +21,8 @@ function App() {
                 <li className="nav-item">
                   <Link className="nav-link" to="/dashboard">Dashboard</Link> 
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Log In</Link> 
-                </li>
               </ul>
+              <Link className="btn btn-outline-success" to="/login">Login</Link>
             </div>
           </div>
         </nav>
@@ -34,7 +32,6 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<LogIn />} />
         </Routes>
-      </div>
     </Router>
   );
 }
