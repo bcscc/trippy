@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Trippy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Authors: Bernie (Shu Cheng) Chen, Sunny (Xiaohan) Wang
+Comp 426 - Spring 2024
 
-## Available Scripts
+See our project on [Youtube!](https://youtube.com/)
 
-In the project directory, you can run:
+Welcome to Trippy! A home for all your trip planning needs. We wanted to create this because we've realized that during our own trip planning, we've often resorted to Notion, or even Google Docs, to be able to store all of the information when trip planning. From flight confirmation #s to accommodation addresses, we wanted to build a place where users can securely store and access to all of this important information. 
 
-### `npm start`
+### Flow
+Users are guided to log in to access a secure dashboard, where they can view their previously created trips, create a new trip, or edit an existing trip. If they choose to view an existing trip, we efficiently display all of the saved information and use OpenWeatherMap API to retrieve the current weather status for their chosen destination. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Tools/Technologies Used:** React, Node.js, Bootstrap, OpenWeatherMap API
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Project Features
+**Interactive Front-End:** Utilizes modern web technologies such as Bootstrap Elements and Selectors to provide a responsive and interactive user experience.
 
-### `npm run build`
+**Backend with RESTful CRUD API:** The backend of this project provides RESTful CRUD APIs for two main resources: Users and Trips. Users can register, log in, and manage trips—including adding, updating, deleting trips, and managing trip-specific activities—all secured through JWT authentication. (/api/login GET, /api/register POST; /api/trips GET, POST, PUT, DELETE; /api/.../activities GET, POST, DELETE)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Integration with Third-Party API:** Enhances functionality by incorporating data from OpenWeatherMap API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Session-Persistent State:** Authenticated the user and then displayd user-specific data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**User Experience Design:** Focuses on a clean and intuitive interface, ensuring ease of use and accessibility.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Presentation Video:** Demonstrates the features and usability of the application, providing a clear showcase of its value and functionality.
