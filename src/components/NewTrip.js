@@ -1,5 +1,4 @@
 import React, { useState } from "react"; 
-import { Trip } from "../../server/trip";
 
 export default function NewTrip() {
     const [destination, setDestination] = useState("");
@@ -9,24 +8,10 @@ export default function NewTrip() {
     const [accommodation, setAccommodation] = useState("");
     const [itinerary, setItinerary] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (destination && departureDate && returnDate) {
-      const newTrip = new Trip(destination, departureDate, itinerary);
-
-      newTrip.flight = flight;
-      newTrip.accommodation = accommodation;
-      newTrip.itinerary = itinerary;
-
-
-      console.log("New trip created:", newTrip);
-  };
-}
 
   return (
     <main className="container mt-5">
-    <form onSubmit={handleSubmit}>
+    <form>
 
       <div className="row g-3">
         <div className="col-sm-8">
@@ -35,11 +20,10 @@ export default function NewTrip() {
           </label>
           <input
             type="text"
-            className={`form-control ${!isDestinationValid ? "is-invalid" : ""}`}
+            className={`form-control`}
             id="destination"
             placeholder=""
             value=""
-            onChange={(e) => setDestination(e.target.value)}
             required
           />
           <div className="invalid-feedback">Valid destination is required.</div>
@@ -50,11 +34,10 @@ export default function NewTrip() {
           </label>
           <input
             type="text"
-            className={`form-control ${!isPurposeValid ? "is-invalid" : ""}`}
+            className={`form-control`}
             id="purpose"
             placeholder=""
             value=""
-            onChange={(e) => setPurpose(e.target.value)} 
             required
           />
           <div className="invalid-feedback">Valid purpose is required.</div>
@@ -66,12 +49,9 @@ export default function NewTrip() {
           <div className="input-group has-validation">
             <input
               type="date"
-              className={`form-control ${
-                !isDepartureDateValid ? "is-invalid" : ""
-              }`}
+              className={`form-control`}
               id="departure"
               placeholder=""
-              onChange={(e) => setDepartureDate(e.target.value)} 
               required
             />
             <div className="invalid-feedback">
@@ -86,12 +66,9 @@ export default function NewTrip() {
           <div className="input-group has-validation">
             <input
               type="date"
-              className={`form-control ${
-                !isReturnDateValid ? "is-invalid" : ""
-              }`}
+              className={`form-control`}
               id="return"
               placeholder=""
-              onChange={(e) => setReturnDate(e.target.value)} 
               required
             />
             <div className="invalid-feedback">
