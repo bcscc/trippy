@@ -11,7 +11,7 @@ Welcome to Trippy! A home for all your trip planning needs. We wanted to create 
 Users are guided to log in to access a secure dashboard, where they can view their previously created trips, create a new trip, or edit an existing trip. If they choose to view an existing trip, we efficiently display all of the saved information and use OpenWeatherMap API to retrieve the current weather status for their chosen destination. 
 
 
-**Tools/Technologies Used:** React, Node.js, Bootstrap, OpenWeatherMap API
+**Tools/Technologies Used:** React, Node.js, Bootstrap, Express.js, OpenWeatherMap API
 
 
 ### Project Features
@@ -21,7 +21,7 @@ Users are guided to log in to access a secure dashboard, where they can view the
 
 **Integration with Third-Party API:** Enhances functionality by incorporating data from OpenWeatherMap API.
 
-**Session-Persistent State:** Authenticated the user and then displayd user-specific data.
+**Session-Persistent State:** Authenticated the user and then display user-specific data using Express.js
 
 **User Experience Design:** Focuses on a clean and intuitive interface, ensuring ease of use and accessibility.
 

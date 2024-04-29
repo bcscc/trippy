@@ -16,7 +16,10 @@ export default function LogIn() {
       });
       const data = await response.json();
       setMessage(data.message);
-      handleLogin();
+
+      if (response.ok) {
+        handleLogin();
+      }
     } catch (error) {
       setMessage("Error Logging In");
       console.error("Error:", error);
@@ -40,7 +43,7 @@ export default function LogIn() {
       });
       const data = await response.json();
       setMessage(data.message);
-      if (response.status === 200) {
+      if (response.ok) {
         localStorage.setItem("token", data.token);
         setIsLoggedIn(true);
         setMessage("Login successful");
