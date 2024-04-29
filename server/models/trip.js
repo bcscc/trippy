@@ -1,6 +1,4 @@
-const Date = require("../models/date");
 const Activity = require("../models/activity");
-
 
 class Trip {
     #id;
@@ -18,8 +16,8 @@ class Trip {
         this.#id = Trip.#next_id++;
         this.#description = "Trip";
         this.#destination = destination || "";
-        this.#departureDate = new Date();
-        this.#returnDate = new Date();
+        this.#departureDate = ""
+        this.#returnDate = ""
         this.#flight = {
             departureAirport: "",
             arrivalAirport: "",
@@ -109,8 +107,8 @@ class Trip {
             tripId: this.#id,
             destination: this.#destination,
             description: this.#description,
-            departureDate: this.#departureDate.toJSON(),
-            returnDate: this.#returnDate.toJSON(),
+            departureDate: this.#departureDate,
+            returnDate: this.#returnDate,
             flight: this.#flight,
             accommodation: this.#accommodation,
             itinerary: this.#itinerary.map(act => act.toJSON())

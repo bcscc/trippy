@@ -43,7 +43,7 @@ export default function Dashboard() {
             </p>
             <p>
               <a
-                href="/newtrip"
+                href="/trip/create"
                 className={`btn btn-primary my-2 ${
                   !isLoggedIn ? "disabled" : ""
                 }`}

@@ -51,64 +51,60 @@ export default function LogIn() {
   const isLoggedIn = localStorage.getItem("token") ? true : false;
 
   return (
-    <div className="container">
+    <main className="container mt-5">
       {!isLoggedIn && (
-        <div>
-          <main className="form-signin w-100 m-auto">
-            <form>
-              <h1 className="h3 mb-3 fw-normal">Login</h1>
-              <div className="form-floating">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <label>Username</label>
-              </div>
+        <div className="form-signin w-100 m-auto">
+          <form>
+            <h1 className="h3 mb-3 fw-normal">Login</h1>
+            <div className="form-floating">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label>Username</label>
+            </div>
 
-              <div className="form-floating">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <label>Password</label>
-              </div>
+            <div className="form-floating">
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label>Password</label>
+            </div>
 
-              <div className="form-check text-start my-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="remember-me"
-                />
-                <label className="form-check-label">
-                  Remember me
-                </label>
-              </div>
+            <div className="form-check text-start my-3">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="remember-me"
+              />
+              <label className="form-check-label">Remember me</label>
+            </div>
 
-              <div style={{ justifyContent: "left" }}>
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={handleLogin}
-                >
-                  Sign in
-                </button>
+            <div style={{ justifyContent: "left" }}>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={handleLogin}
+              >
+                Sign in
+              </button>
 
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={handleRegister}
-                >
-                  Register
-                </button>
-              </div>
-            </form>
-          </main>
+              <button
+                className="btn btn-secondary"
+                type="button"
+                onClick={handleRegister}
+              >
+                Register
+              </button>
+            </div>
+          </form>
         </div>
       )}
       {isLoggedIn && (
@@ -126,6 +122,6 @@ export default function LogIn() {
           </main>
         </div>
       )}
-    </div>
+    </main>
   );
 }

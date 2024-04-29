@@ -19,8 +19,8 @@ const users = [];
 const User1 = new User("test", "test");
 const Trip1 = new Trip("New York, NY");
 
-Trip1.departureDate.setDate(5, 10, 2024);
-Trip1.returnDate.setDate(5, 12, 2024);
+Trip1.departureDate = "2024-05-10"
+Trip1.returnDate = "2024-05-12"
 Trip1.setflight("LGA", "YYZ", "384JSUFH");
 Trip1.setAccommodation("110 Road", "SAIHF314");
 Trip1.addActivity("Empire State", "Midtown");
@@ -28,8 +28,8 @@ User1.addTrip(Trip1);
 
 const Trip2 = new Trip("Washington, DC");
 
-Trip2.departureDate.setDate(7, 22, 2024);
-Trip2.returnDate.setDate(7, 30, 2024);
+Trip2.departureDate = "2024-07-22"
+Trip2.returnDate = "2024-07-30"
 Trip2.setflight("DUL", "JFK", "13D8JF5H");
 Trip2.setAccommodation("29 Strret", "SF3142JW");
 Trip2.addActivity("White House", "National Park");
@@ -100,6 +100,51 @@ app.get("/api/trips", authenticate, (req, res) => {
     res.status(404).json({ message: "User not found" });
   }
 });
+
+app.get("/api/trips/:tripId", authenticate, (req, res) => {
+    const tripId = req.params.tripId;
+    const user = users.find((user) => user.username === req.user.username);
+
+    if (user) {
+        const trip = user.trips.find(t => t.id.toString() === tripId);
+
+        if (trip) {
+            res.json(trip.toJSON());
+        } else {
+            res.status(404).json({ message: "Trip not found" });
+        }
+    } else {
+        res.status(404).json({ message: "User not found" });
+    }
+});
+
+
+app.post("/api/trips", authenticate, (req, res) => {
+    console.log(req.body);
+    const { destination, departureDate, returnDate, flightDepartureAirport, flightArrivalAirport, flightConfirmationNum, accommodationAddress, accommodationConfirmationNum, description } = req.body;
+
+    if (!destination || !departureDate || !returnDate || !flightDepartureAirport || !flightArrivalAirport || !flightConfirmationNum || !accommodationAddress || !accommodationConfirmationNum) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const user = users.find((user) => user.username === req.user.username);
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    // Create a new trip
+    const newTrip = new Trip(destination);
+    newTrip.description = description;
+    newTrip.departureDate = departureDate;
+    newTrip.returnDate = returnDate;
+    newTrip.setflight(flightDepartureAirport, flightArrivalAirport, flightConfirmationNum);
+    newTrip.setAccommodation(accommodationAddress, accommodationConfirmationNum);
+
+    user.addTrip(newTrip);
+
+    res.status(201).json({ message: "Trip added successfully", trip: newTrip.toJSON() });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
