@@ -5,18 +5,19 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import image1 from './images/image1.jpg';
 import image2 from './images/image2.jpg';
+import image4 from './images/image4.jpg';
+
 
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <div
         id="myCarousel"
-        className="carousel slide mb-6"
+        className="carousel slide mb-6 pointer-event"
         data-bs-ride="carousel"
         data-bs-interval="3000"
         data-bs-pause="false"
-        style={{ height: '800px' }} 
       >
         <div className="carousel-indicators">
           <button
@@ -37,16 +38,15 @@ export default function Home() {
           ></button>
         </div>
 
-        <div className="carousel-inner" style={{ height: '100%' }}>
+        <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={image2}
+              src={image4}
               alt="First slide"
-              className="d-block w-100" 
-              style={{ height: '100%', objectFit: 'cover' }} 
+              className="d-block object-fit-cover w-100 h-100" 
             />
             <div className="container">
-              <div className="carousel-caption text-end">
+              <div className="carousel-caption text-start">
                 <h1>Get trippy with Trippy</h1>
                 <p>The home of all your trip planning.</p>
                 <p>
@@ -62,11 +62,10 @@ export default function Home() {
             <img
               src={image2}
               alt="Second slide"
-              className="d-block w-100" 
-              style={{ height: '100%', objectFit: 'cover' }} 
+              className="d-block object-fit-cover w-100 h-100" 
             />
             <div className="container">
-              <div className="carousel-caption text-end">
+              <div className="carousel-caption">
                 <h1>Get trippy with Trippy</h1>
                 <p>The home of all your trip planning.</p>
                 <p>
@@ -80,10 +79,9 @@ export default function Home() {
 
           <div className="carousel-item">
             <img
-              src={image2}
+              src={image1}
               alt="Third slide"
-              className="d-block w-100" 
-              style={{ height: '100%', objectFit: 'cover' }} 
+              className="d-block object-fit-cover w-100 h-100" 
             />
             <div className="container">
               <div className="carousel-caption text-end">
@@ -125,6 +123,6 @@ export default function Home() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
+    </main>
   );
 }

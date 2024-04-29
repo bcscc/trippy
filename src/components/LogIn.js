@@ -50,6 +50,7 @@ export default function LogIn() {
 
   const isLoggedIn = localStorage.getItem("token");
 
+<<<<<<< HEAD
   return (<div className="container">
   <main className="form-signin w-100 m-auto">
     <form>
@@ -116,3 +117,33 @@ export default function LogIn() {
 </div>
 );
 }
+=======
+  return (
+    <main>
+      <div className="container">
+        <h1>{isLoggedIn ? "Welcome" : "Login"}</h1>
+        {!isLoggedIn && (
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => handleInputChange(e, setUsername)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => handleInputChange(e, setPassword)}
+            />
+            <button onClick={handleRegister}>Register</button>
+            <button onClick={handleLogin}>Login</button>
+          </div>
+        )}
+        {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
+        <p>{message}</p>
+      </div>
+    </main>
+  );
+}
+>>>>>>> 7f1078a190175cad515d704b8f7854022a933a4b
