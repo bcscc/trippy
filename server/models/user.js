@@ -29,7 +29,7 @@ class User {
     }
 
     get trips() {
-        return this.#trips.map(trip => trip.toJSON());
+        return this.#trips;
     }
 
     set username(newUsername) {

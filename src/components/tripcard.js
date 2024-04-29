@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function TripCard({ trip }) {
+  let navigate = useNavigate();
+
+  const handleViewExpand= () => {
+    navigate(`/trip/${trip.tripId}`);
+  };
+
   return (
     <div className="col">
       <div className="card shadow-sm">
@@ -11,12 +18,15 @@ export default function TripCard({ trip }) {
           />
         </svg>
         <div className="card-body">
-          <p className="card-text">{trip.destination} - {trip.description}</p>
+          <p className="card-text">
+            {trip.destination} - {trip.description}
+          </p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="btn-group">
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
+                onClick={handleViewExpand}
               >
                 View
               </button>
