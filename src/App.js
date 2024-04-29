@@ -6,6 +6,7 @@ import LogIn from "./components/LogIn";
 import Header from './components/Header';
 import { AuthProvider } from './components/AuthContext';
 import "./App.css";
+import NewTrip from './components/NewTrip';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<LogIn />} />
+          <Route path="/newtrip" element={<NewTrip />} />
+
         </Routes>
       </AuthProvider>
     </Router>
