@@ -2,8 +2,12 @@ export class Trip {
 
     #id
     #destination
-    #date
-    #description
+    #departureDate
+    #returnDate
+    #flight
+    #accommodation
+    #itinerary
+    
 
     static #next_id = 0;
     
