@@ -3,6 +3,7 @@ import TripCard from "./Tripcard";
 
 export default function Dashboard() {
   const [trips, setTrips] = useState([]);
+  const isLoggedIn = localStorage.getItem("token") ? true : false;
 
   useEffect(() => {
     async function fetchTrips() {
@@ -41,7 +42,12 @@ export default function Dashboard() {
               one!
             </p>
             <p>
-              <a href="#" className="btn btn-primary my-2">
+              <a
+                href="/newtrip"
+                className={`btn btn-primary my-2 ${
+                  !isLoggedIn ? "disabled" : ""
+                }`}
+              >
                 New Trip
               </a>
             </p>
@@ -50,15 +56,18 @@ export default function Dashboard() {
       </section>
       <div className="album py-5 bg-body-tertiary">
         <div className="container">
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {trips && trips.length > 0 ? (
-              trips.map((trip, index) => <TripCard key={index} trip={trip} />)
-            ) : (
-              <div className="text-center">
-                <h2>No upcoming trips for you...</h2>
-              </div>
-            )}
-          </div>
+          {isLoggedIn && (
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              {trips && trips.length > 0 ? (
+                trips.map((trip, index) => <TripCard key={index} trip={trip} />)
+              ) : (
+                <div className="text-center">
+                  <h2>No upcoming trips for you...</h2>
+                </div>
+              )}
+            </div>
+          )}
+          {!isLoggedIn && <h2>Please log in to access dashboard.</h2>}
         </div>
       </div>
     </main>
