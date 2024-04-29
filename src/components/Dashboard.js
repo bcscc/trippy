@@ -32,9 +32,10 @@ export default function Dashboard() {
         style={{
           backgroundImage:
             "url('https://iso.500px.com/wp-content/uploads/2016/02/cover.jpg')",
+          height: "vh",
         }}
       >
-        <div className="row py-lg-5">
+        <div className="row py-5">
           <div className="col-lg-6 col-md-8 mx-auto">
             <h1 className="fw-light">Welcome to your Dashboard</h1>
             <p className="lead text-body-secondary">

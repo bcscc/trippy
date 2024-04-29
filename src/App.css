@@ -6,3 +6,7 @@ body {
 .carousel-item {
     height: 45rem;
 }
+
+html {
+    background-color: #198753;
+}

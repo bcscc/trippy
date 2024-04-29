@@ -67,7 +67,7 @@ class Trip {
         return this.#flight;
     }
 
-    setflight(d, a, c) {
+    setFlight(d, a, c) {
         this.#flight = {
             departureAirport: d,
             arrivalAirport: a,
@@ -95,11 +95,18 @@ class Trip {
     }
 
     getActivity(id) {
-        return this.#itinerary.find((act) => act.id === id);
+        return this.#itinerary.find((act) => act.activityId.toString() === id);
+    }
+
+    getActivityIndex(id) {
+        return this.#itinerary.findIndex((act) => act.id.toString() === id);
     }
 
     removeActivity(id) {
-        this.#itinerary.pop(this.getActivity(id));
+        const index = this.getActivityIndex(id)
+        if (index !== -1) {
+            this.#itinerary.splice(index, 1);
+        }
     }
 
     toJSON() {

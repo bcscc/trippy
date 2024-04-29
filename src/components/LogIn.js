@@ -113,7 +113,7 @@ export default function LogIn() {
             <p>{message}</p>
 
             <button
-              className="btn btn-secondary"
+              className="btn btn-danger"
               type="button"
               onClick={handleLogout}
             >
