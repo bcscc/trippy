@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TripCard from "./tripcard";
+import TripCard from "./Tripcard";
 
 export default function Dashboard() {
   const [trips, setTrips] = useState([]);

@@ -27,7 +27,7 @@ export default function TripCard({ trip }) {
                 Edit
               </button>
             </div>
-            <small className="text-body-secondary">{trip.date}</small>
+            <small className="text-body-secondary">{trip.departureDate}</small>
           </div>
         </div>
       </div>
