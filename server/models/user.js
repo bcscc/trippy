@@ -1,3 +1,5 @@
+const Trip = require("../models/trip");
+
 class User {
 
     #id
@@ -7,11 +9,11 @@ class User {
 
     static #next_id = 0;
     
-    constructor(username, password, trips) {
+    constructor(username, password) {
         this.#id = User.#next_id++;
         this.#username = username;
         this.#password = password;
-        this.#trips = trips || [];
+        this.#trips = [];
     }
 
     get id() {
@@ -27,7 +29,7 @@ class User {
     }
 
     get trips() {
-        return this.#trips;
+        return this.#trips.map(trip => trip.toJSON());
     }
 
     set username(newUsername) {

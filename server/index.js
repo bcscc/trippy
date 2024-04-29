@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const User = require("./user");
+const User = require("./models/user");
+const Trip = require("./models/trip");
 
 const secretKey = "your_secret_key";
 
@@ -14,12 +15,29 @@ app.use(bodyParser.json());
 
 // Test User Data
 const users = [];
-users.push(
-  new User("test", "test", [
-    { destination: "Paris", date: "2024-05-01", description: "Business trip" },
-    { destination: "New York", date: "2024-06-01", description: "Vacation" },
-  ])
-);
+
+const User1 = new User("test", "test");
+const Trip1 = new Trip("New York, NY");
+
+Trip1.departureDate.setDate(5, 10, 2024);
+Trip1.returnDate.setDate(5, 12, 2024);
+Trip1.setflight("LGA", "YYZ", "384JSUFH");
+Trip1.setAccommodation("110 Road", "SAIHF314");
+Trip1.addActivity("Empire State", "Midtown");
+User1.addTrip(Trip1);
+
+const Trip2 = new Trip("Washington, DC");
+
+Trip2.departureDate.setDate(7, 22, 2024);
+Trip2.returnDate.setDate(7, 30, 2024);
+Trip2.setflight("DUL", "JFK", "13D8JF5H");
+Trip2.setAccommodation("29 Strret", "SF3142JW");
+Trip2.addActivity("White House", "National Park");
+User1.addTrip(Trip2);
+
+users.push(User1);
+
+
 
 // Test User Registry
 app.get("/api/logins", async (req, res) => {
