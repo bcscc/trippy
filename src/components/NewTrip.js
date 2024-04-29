@@ -64,7 +64,7 @@ export default function NewTrip() {
               type="text"
               className={`form-control`}
               id="destination"
-              placeholder=""
+              placeholder="City, State (Country)"
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               required
@@ -79,7 +79,7 @@ export default function NewTrip() {
               type="text"
               className={`form-control`}
               id="purpose"
-              placeholder=""
+              placeholder="Vacation, Business, Personal, etc"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -138,7 +138,7 @@ export default function NewTrip() {
               type="text"
               className="form-control"
               id="departureairport"
-              placeholder=""
+              placeholder="JFK"
               value={flightDepartureAirport}
               onChange={(e) => setFlightDepart(e.target.value)}
               required
@@ -150,7 +150,7 @@ export default function NewTrip() {
               type="text"
               className="form-control"
               id="arrivalairport"
-              placeholder=""
+              placeholder="LGA"
               value={flightArrivalAirport}
               onChange={(e) => setFlightArrive(e.target.value)}
               required
@@ -185,8 +185,8 @@ export default function NewTrip() {
             </div>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Add New Trip
+        <button type="submit" className="btn btn-primary mt-3">
+          Create New Trip
         </button>
       </form>
     </main>
