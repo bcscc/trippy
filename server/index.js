@@ -16,23 +16,24 @@ app.use(bodyParser.json());
 // Test User Data
 const users = [];
 
-const User1 = new User("test", "test");
+const User1 = new User("TestUser", "test");
 const Trip1 = new Trip("New York, NY");
 
 Trip1.departureDate = "2024-05-10"
 Trip1.returnDate = "2024-05-12"
+Trip1.description = "Business"
 Trip1.setFlight("LGA", "YYZ", "384JSUFH");
 Trip1.setAccommodation("110 Road", "SAIHF314");
 Trip1.addActivity("Empire State", "Midtown");
 User1.addTrip(Trip1);
 
 const Trip2 = new Trip("Washington, DC");
-
+Trip2.description = "Vacation"
 Trip2.departureDate = "2024-07-22"
 Trip2.returnDate = "2024-07-30"
 Trip2.setFlight("DUL", "JFK", "13D8JF5H");
-Trip2.setAccommodation("29 Strret", "SF3142JW");
-Trip2.addActivity("White House", "National Park");
+Trip2.setAccommodation("29 Street", "SF3142JW");
+Trip2.addActivity("White House", "National Mall");
 User1.addTrip(Trip2);
 
 users.push(User1);

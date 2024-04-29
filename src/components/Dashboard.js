@@ -29,11 +29,15 @@ export default function Dashboard() {
     <main>
       <section
         className="py-5 text-center"
-        style={{
-          backgroundImage:
-            "url('https://iso.500px.com/wp-content/uploads/2016/02/cover.jpg')",
-          height: "vh",
-        }}
+        style={
+          {
+            backgroundImage: "url('https://iso.500px.com/wp-content/uploads/2016/02/cover.jpg')",
+            height: "50vh",
+            backgroundPosition: "top",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+        }
+      }
       >
         <div className="row py-5">
           <div className="col-lg-6 col-md-8 mx-auto">
