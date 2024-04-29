@@ -1,53 +1,71 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-export default function NewTrip() {
-  const [destination, setDestination] = useState("");
-  const [description, setDescription] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [flightConfirmationNum, setFlightCon] = useState("");
-  const [flightDepartureAirport, setFlightDepart] = useState("");
-  const [flightArrivalAirport, setFlightArrive] = useState("");
-  const [accommodationConfirmationNum, setAccommodationCon] = useState("");
-  const [accommodationAddress, setAccommodationAdd] = useState("");
-
+export default function EditTrip() {
   let navigate = useNavigate();
+  const { tripId } = useParams();
+  const [trip, setTrip] = useState(null);
+
+  useEffect(() => {
+    async function fetchTripDetails() {
+      const response = await fetch(
+        `http://localhost:3001/api/trips/${tripId}`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      const data = await response.json();
+      setTrip(data);
+      console.log(data);
+    }
+
+    fetchTripDetails();
+  }, [tripId]);
+
+  if (!trip) {
+    return <div>Loading...</div>;
+  }
+
+  const handleInputChange = (e, field, nestedField) => {
+    if (nestedField) {
+      setTrip((prev) => ({
+        ...prev,
+        [field]: {
+          ...prev[field],
+          [nestedField]: e.target.value,
+        },
+      }));
+    } else {
+      setTrip((prev) => ({
+        ...prev,
+        [field]: e.target.value,
+      }));
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const tripData = {
-      destination,
-      description,
-      departureDate,
-      returnDate,
-      flightDepartureAirport,
-      flightArrivalAirport,
-      flightConfirmationNum,
-      accommodationAddress,
-      accommodationConfirmationNum,
-    };
-
     try {
-      console.log(tripData);
-
-      const response = await fetch("http://localhost:3001/api/trips", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        body: JSON.stringify(tripData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      console.log(JSON.stringify(trip));
+      const response = await fetch(
+        `http://localhost:3001/api/trips/${tripId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(trip),
+        }
+      );
+      if (response.ok) {
+        navigate(`/trip/${tripId}`);
+      } else {
+        alert("Failed to update trip");
       }
-
-      navigate("/dashboard");
     } catch (error) {
-      console.error("Failed to add trip:", error);
-      alert("Failed to add trip: " + error.message);
+      console.error("Failed to update trip:", error);
+      alert("Failed to update trip: " + error.message);
     }
   };
 
@@ -55,7 +73,7 @@ export default function NewTrip() {
     <main className="container mt-5">
       <form onSubmit={handleSubmit}>
         <h1>
-          Create Trip <span>&#9992;</span>
+          <span>&#128221;</span> Edit Trip - {trip.destination}
         </h1>
         <div className="row g-3">
           <div className="col-sm-8">
@@ -65,8 +83,8 @@ export default function NewTrip() {
               className={`form-control`}
               id="destination"
               placeholder=""
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
+              value={trip.destination}
+              onChange={(e) => handleInputChange(e, "destination")}
               required
             />
             <div className="invalid-feedback">
@@ -80,8 +98,8 @@ export default function NewTrip() {
               className={`form-control`}
               id="purpose"
               placeholder=""
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={trip.description}
+              onChange={(e) => handleInputChange(e, "description")}
               required
             />
             <div className="invalid-feedback">Valid purpose is required.</div>
@@ -94,8 +112,8 @@ export default function NewTrip() {
                 className={`form-control`}
                 id="departure"
                 placeholder=""
-                value={departureDate}
-                onChange={(e) => setDepartureDate(e.target.value)}
+                value={trip.departureDate}
+                onChange={(e) => handleInputChange(e, "departureDate")}
                 required
               />
               <div className="invalid-feedback">
@@ -111,8 +129,8 @@ export default function NewTrip() {
                 className={`form-control`}
                 id="return"
                 placeholder=""
-                value={returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
+                value={trip.returnDate}
+                onChange={(e) => handleInputChange(e, "returnDate")}
                 required
               />
               <div className="invalid-feedback">
@@ -127,8 +145,10 @@ export default function NewTrip() {
               className="form-control"
               id="confirmation"
               placeholder=""
-              value={flightConfirmationNum}
-              onChange={(e) => setFlightCon(e.target.value)}
+              value={trip.flight.confirmationNum}
+              onChange={(e) =>
+                handleInputChange(e, "flight", "confirmationNum")
+              }
               required
             />
           </div>
@@ -139,8 +159,10 @@ export default function NewTrip() {
               className="form-control"
               id="departureairport"
               placeholder=""
-              value={flightDepartureAirport}
-              onChange={(e) => setFlightDepart(e.target.value)}
+              value={trip.flight.departureAirport}
+              onChange={(e) =>
+                handleInputChange(e, "flight", "departureAirport")
+              }
               required
             />
           </div>
@@ -151,8 +173,8 @@ export default function NewTrip() {
               className="form-control"
               id="arrivalairport"
               placeholder=""
-              value={flightArrivalAirport}
-              onChange={(e) => setFlightArrive(e.target.value)}
+              value={trip.flight.arrivalAirport}
+              onChange={(e) => handleInputChange(e, "flight", "arrivalAirport")}
               required
             />
           </div>
@@ -164,8 +186,10 @@ export default function NewTrip() {
                 className="form-control"
                 id="accommodation"
                 placeholder=""
-                value={accommodationConfirmationNum}
-                onChange={(e) => setAccommodationCon(e.target.value)}
+                value={trip.accommodation.confirmationNum}
+                onChange={(e) =>
+                  handleInputChange(e, "accommodation", "confirmationNum")
+                }
                 required
               />
             </div>
@@ -178,15 +202,17 @@ export default function NewTrip() {
                 className="form-control"
                 id="address"
                 placeholder=""
-                value={accommodationAddress}
-                onChange={(e) => setAccommodationAdd(e.target.value)}
+                value={trip.accommodation.address}
+                onChange={(e) =>
+                  handleInputChange(e, "accommodation", "address")
+                }
                 required
               />
             </div>
           </div>
         </div>
         <button type="submit" className="btn btn-primary">
-          Add New Trip
+          Save Changes
         </button>
       </form>
     </main>

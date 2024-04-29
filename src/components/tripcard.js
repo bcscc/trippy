@@ -4,10 +4,6 @@ import { useNavigate } from "react-router-dom";
 export default function TripCard({ trip }) {
   let navigate = useNavigate();
 
-  const handleViewExpand= () => {
-    navigate(`/trip/${trip.tripId}`);
-  };
-
   return (
     <div className="col">
       <div className="card shadow-sm">
@@ -26,13 +22,14 @@ export default function TripCard({ trip }) {
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
-                onClick={handleViewExpand}
+                onClick={() => navigate(`/trip/${trip.tripId}`)}
               >
                 View
               </button>
               <button
                 type="button"
                 className="btn btn-sm btn-outline-secondary"
+                onClick={() => navigate(`/trip/edit/${trip.tripId}`)}
               >
                 Edit
               </button>
