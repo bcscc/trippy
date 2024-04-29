@@ -142,7 +142,7 @@ app.post("/api/trips", authenticate, (req, res) => {
 
     user.addTrip(newTrip);
 
-    res.status(201).json({ message: "Trip added successfully", trip: newTrip.toJSON() });
+    res.status(201).json({ message: "Trip added successfully" });
 });
 
 app.put("/api/trips/:tripId", authenticate, (req, res) => {
@@ -174,7 +174,7 @@ app.put("/api/trips/:tripId", authenticate, (req, res) => {
 
     console.log(trip.toJSON());
 
-    res.status(200).json({ message: "Trip updated successfully", trip: trip.toJSON() });
+    res.status(200).json({ message: "Trip updated successfully" });
 });
 
 app.delete("/api/trips/:tripId", authenticate, (req, res) => {
