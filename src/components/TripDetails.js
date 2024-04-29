@@ -6,6 +6,7 @@ export default function TripDetails() {
   let navigate = useNavigate();
   const { tripId } = useParams();
   const [trip, setTrip] = useState(null);
+  const [weather, setWeather] = useState({ temp: "", main: "" });
 
   const [newActivityDescription, setNewActivityDescription] = useState("");
   const [newActivityNotes, setNewActivityNotes] = useState("");
@@ -20,10 +21,35 @@ export default function TripDetails() {
       );
       const data = await response.json();
       setTrip(data);
+
+      if (data.destination) {
+        fetchWeather(data.destination.split(",")[0]);
+      }
     }
 
     fetchTripDetails();
   }, [tripId]);
+
+  const fetchWeather = async (city) => {
+    const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+      city
+    )}&units=imperial&appid=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      const weatherData = await response.json();
+      if (response.ok) {
+        setWeather({
+          temp: weatherData.main.temp,
+          main: weatherData.weather[0].main,
+          icon: weatherData.weather[0].icon,
+        });
+      }
+    } catch (error) {
+      console.error("Weather API fetch error:", error);
+    }
+  };
 
   if (!trip) {
     return <div>Loading...</div>;
@@ -90,9 +116,20 @@ export default function TripDetails() {
   return (
     <main className="container mt-5">
       <div>
-        <h1 className="mb-3">
-          {trip.destination} - {trip.description}
-        </h1>
+        <div className="row mb-3">
+          <h1 className="col-7">
+            {trip.destination} - {trip.description}
+          </h1>
+          <h2 className="text-end col-5">
+              {weather.main}
+              <img
+                src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+                alt={weather.main}
+                style={{ height: "3rem" }}
+              />
+              {weather.temp}°F
+            </h2>
+        </div>
         <div className="row g-3">
           <h3>
             Dates: {trip.departureDate} - {trip.returnDate}
@@ -107,7 +144,7 @@ export default function TripDetails() {
             <h3>Confirmation #{trip.flight.confirmationNum}</h3>
           </div>
           <div>
-            <h3>Accommodation</h3>
+            <h3>Accommodation:</h3>
             <div className="px-3">
               <h4>
                 <span>&#x2022;</span>Address: {trip.accommodation.address}
@@ -162,17 +199,18 @@ export default function TripDetails() {
             </form>
           </div>
         </div>
-        <button
-          onClick={() => navigate(`/trip/edit/${tripId}`)}
-          className="btn btn-primary"
-        >
-          Edit
-        </button>
-        <button onClick={handleDelete} className="btn btn-danger">
-          Delete
-        </button>
+        <div className="d-flex gap-2">
+          <button
+            onClick={() => navigate(`/trip/edit/${tripId}`)}
+            className="btn btn-primary"
+          >
+            Edit
+          </button>
+          <button onClick={handleDelete} className="btn btn-danger">
+            Delete
+          </button>
+        </div>
       </div>
-      <div id="liveAlertPlaceholder"></div>
     </main>
   );
 }

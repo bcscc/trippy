@@ -16,6 +16,7 @@ export default function LogIn() {
       });
       const data = await response.json();
       setMessage(data.message);
+      handleLogin();
     } catch (error) {
       setMessage("Error Logging In");
       console.error("Error:", error);
@@ -23,6 +24,14 @@ export default function LogIn() {
   };
 
   const handleLogin = async () => {
+    if (!(username.length > 0)) {
+      setMessage("Enter Username");
+      return;
+    } else if (!(password.length > 0)) {
+      setMessage("Enter Password");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3001/api/login", {
         method: "POST",
@@ -87,7 +96,7 @@ export default function LogIn() {
               <label className="form-check-label">Remember me</label>
             </div>
 
-            <div style={{ justifyContent: "left" }}>
+            <div className="d-flex gap-2">
               <button
                 className="btn btn-secondary"
                 type="button"
@@ -97,13 +106,15 @@ export default function LogIn() {
               </button>
 
               <button
-                className="btn btn-secondary"
+                className="btn btn-primary"
                 type="button"
                 onClick={handleRegister}
               >
                 Register
               </button>
             </div>
+
+            <p className="text-warning-emphasis">{message}</p>
           </form>
         </div>
       )}
