@@ -3,7 +3,7 @@
 ### Authors: Bernie (Shu Cheng) Chen, Sunny (Xiaohan) Wang
 Comp 426 - Spring 2024
 
-See our project on [Youtube!]([https://youtube.com/](https://youtu.be/IRuNZdXw6VY))
+See our project on [Youtube!]([https://youtu.be/IRuNZdXw6VY])
 
 Welcome to Trippy! A home for all your trip planning needs. We wanted to create this because we've realized that during our own trip planning, we've often resorted to Notion, or even Google Docs, to be able to store all of the information when trip planning. From flight confirmation #s to accommodation addresses, we wanted to build a place where users can securely store and access to all of this important information. 
 
